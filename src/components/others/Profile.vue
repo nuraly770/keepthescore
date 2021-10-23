@@ -1,0 +1,104 @@
+<template>
+    <div class="ks-profile">
+        <div class="ks-profile__col">
+            <div class="ks-profile__wrapper">
+                <img src="../../assets/profilePhoto.svg" alt="profilePhoto" class="ks-profile__image">
+                <div class="ks-profile__data">
+                    <h4 class="ks-profile__data-title">Gurban</h4>
+                    <p class="ks-profile__data-text">Total score: 2134</p>
+                    <p class="ks-profile__data-text">Position: 2</p>
+                </div>
+            </div>
+            <h3 class="ks-profile__title">Add score</h3>
+            <div class="ks-form">
+                <input type="number" placeholder="0" class="ks-form__input">
+                <button class="ks-form__btn">Add score</button>
+            </div>
+
+            <button class="ks-profile__circle-btn">+1</button>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'Profile',
+    data() {
+        return {
+            
+        }
+    },
+}
+</script>
+<style lang="scss">
+    @import "../../assets/scss/form";
+    .ks-profile {
+            width: 237px;
+            margin: auto;
+            // .ks-profile__col
+
+            &__col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            // .ks-profile__wrapper
+
+            &__wrapper {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            // .ks-profile__image
+
+            &__image {
+                border-radius: 100%;
+            }
+
+            // .ks-profile__data
+
+            &__data {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            // .ks-profile__data-name
+
+            &__data-title {
+                font-size: 20px;
+                font-weight: 400;
+                text-transform: uppercase;
+            }
+
+            // .ks-profile__data-score
+
+            &__data-text {
+                font-size: 14px;
+                text-transform: uppercase; 
+            }
+
+            // .ks-profile__title
+
+            &__title {
+                margin: 40px 0 20px;
+                font-size: 14px;
+                text-transform: uppercase;
+                font-weight: 400;
+                text-align: center;
+            }
+
+            // .ks-profile__circle-btn
+
+            &__circle-btn {
+                border: none;
+                border-radius: 100%;
+                width: 108px;
+                height: 108px;
+                background: #DAEED3;
+                font-size: 40px;
+                margin-top: 15px;
+            }
+    }
+</style>
