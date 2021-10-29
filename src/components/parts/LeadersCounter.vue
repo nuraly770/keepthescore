@@ -1,20 +1,25 @@
 <template>
     <div class="ks-main__leaders">
-        <h3 class="ks-main__title">Leaders Counter</h3>        
+        <div class="ks-main__title">
+             <router-link to="/">Leaders</router-link>
+            <router-link to="/counter">Counter</router-link>
+            <router-link to="/rewards">Rewards</router-link>
+        </div>
+        <router-view/>
     </div>
-    <profile />
+    <profile v-if="false" />
+    <leaders v-if="false" />
+    <rewards v-if="false" />
 </template>
 
 <script>
-import Profile from '@/components/others/Profile'
 export default {
     name: 'LeadersCounter',
-    components: { 
-      Profile 
+    components: {
     },
     data() {
         return {
-            
+
         }
     },
 }

@@ -1,5 +1,5 @@
 <template>
-<main-page />
+<main-page v-if="true" />
 </template>
 
 <script>
@@ -8,8 +8,8 @@ import MainPage from '@/components/MainPage'
 export default {
   name: 'App',
   components: {
-    MainPage
-  }
+    MainPage,
+ }
 }
 </script>
 
@@ -22,5 +22,9 @@ export default {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+stify-content: center;
+tify-content: center;
+tify-content: center;
 }
 </style>
+

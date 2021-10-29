@@ -2,7 +2,7 @@
     <div class="ks-profile">
         <div class="ks-profile__col">
             <div class="ks-profile__wrapper">
-                <img src="../../assets/profilePhoto.svg" alt="profilePhoto" class="ks-profile__image">
+                <img src="../assets/profilePhoto.svg" alt="profilePhoto" class="ks-profile__image">
                 <div class="ks-profile__data">
                     <h4 class="ks-profile__data-title">Gurban</h4>
                     <p class="ks-profile__data-text">Total score: 2134</p>
@@ -24,13 +24,13 @@ export default {
     name: 'Profile',
     data() {
         return {
-            
+
         }
     },
 }
 </script>
 <style lang="scss">
-    @import "../../assets/scss/form";
+    // @import "../../assets/scss/form";
     .ks-profile {
             width: 237px;
             margin: auto;
@@ -76,7 +76,7 @@ export default {
 
             &__data-text {
                 font-size: 14px;
-                text-transform: uppercase; 
+                text-transform: uppercase;
             }
 
             // .ks-profile__title
