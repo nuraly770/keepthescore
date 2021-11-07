@@ -14,8 +14,9 @@
                 <input type="number" placeholder="0" class="ks-form__input">
                 <button class="ks-form__btn">Add score</button>
             </div>
-
-            <button class="ks-profile__circle-btn">+1</button>
+            <button
+            v-on:click="number"
+            class="ks-profile__circle-btn">{{ result }}</button>
         </div>
     </div>
 </template>
@@ -24,9 +25,19 @@ export default {
     name: 'Profile',
     data() {
         return {
-
+          result: 1
         }
     },
+    props: ['value'],
+    methods:{
+      emitResult(){
+        this.$emit('input', this.result)
+      },
+      number(){
+        this.result += 1
+        this.emitResult()
+      }
+    }
 }
 </script>
 <style lang="scss">
@@ -48,12 +59,18 @@ export default {
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
+                 @media (max-width:575px) {
+                    justify-content: space-around;
+                }
             }
 
             // .ks-profile__image
 
             &__image {
                 border-radius: 100%;
+                @media (max-width:575px) {
+                    width: 80px;
+                }
             }
 
             // .ks-profile__data
@@ -70,6 +87,9 @@ export default {
                 font-size: 20px;
                 font-weight: 400;
                 text-transform: uppercase;
+                 @media (max-width:575px) {
+                    font-size: 16px;
+                }
             }
 
             // .ks-profile__data-score
@@ -87,6 +107,9 @@ export default {
                 text-transform: uppercase;
                 font-weight: 400;
                 text-align: center;
+                 @media (max-width:575px) {
+                    margin: 20px 0 10px;
+                }
             }
 
             // .ks-profile__circle-btn

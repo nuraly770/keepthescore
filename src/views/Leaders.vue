@@ -1,17 +1,51 @@
 <template>
-   <div class="ks-leaders__wrapper">
-       <div class="ks-leaders__inner-wrapper">
-           <div class="ks-leaders__place">1</div>
-           <div class="ks-leaders__name">Gurban</div>
-           <div class="ks-leaders__number">2312</div>
-       </div>
-       <div class="ks-leaders__image">
-           <img src="../assets/man.svg" alt="man">
-       </div>
-   </div>
-   <div class="ks-leaders__line">
-       <div class="ks-leaders__color"></div>
-   </div>
+<div class="ks-leaders">
+    <div class="ks-leaders__outer-wrapper">
+        <div class="ks-leaders__wrapper">
+            <div class="ks-leaders__inner-wrapper">
+                <div class="ks-leaders__place">1</div>
+                <div class="ks-leaders__name">Gurban</div>
+                <div class="ks-leaders__number">2312</div>
+            </div>
+            <div class="ks-leaders__image">
+                <img src="../assets/man.svg" alt="man">
+            </div>
+        </div>
+        <div class="ks-leaders__line">
+            <div class="ks-leaders__color"></div>
+        </div>
+    </div>
+    <div class="ks-leaders__outer-wrapper">
+        <div class="ks-leaders__wrapper">
+            <div class="ks-leaders__inner-wrapper">
+                <div class="ks-leaders__place">2</div>
+                <div class="ks-leaders__name">Annaoraz</div>
+                <div class="ks-leaders__number">1901</div>
+            </div>
+            <div class="ks-leaders__image">
+                <img src="../assets/man_second.svg" alt="man">
+            </div>
+        </div>
+        <div class="ks-leaders__line">
+            <div class="ks-leaders__color"></div>
+        </div>
+    </div>
+    <div class="ks-leaders__outer-wrapper">
+        <div class="ks-leaders__wrapper">
+            <div class="ks-leaders__inner-wrapper">
+                <div class="ks-leaders__place">3</div>
+                <div class="ks-leaders__name">Welmyrat</div>
+                <div class="ks-leaders__number">1834</div>
+            </div>
+            <div class="ks-leaders__image">
+                <img src="../assets/man_third.svg" alt="man">
+            </div>
+        </div>
+        <div class="ks-leaders__line">
+            <div class="ks-leaders__color"></div>
+        </div>
+    </div>
+</div>
 </template>
 <script>
 export default {
@@ -45,6 +79,9 @@ export default {
         text-align: right;
         color: #000000;
         margin-right: 7px;
+    }
+    &__outer-wrapper{
+        margin-bottom: 20px;
     }
     &__place{
         margin: 0 0 5px 17px;

@@ -7,7 +7,7 @@
             <leaders-counter v-if="true"/>
             <leaders />
             <div class="ks-main__players">
-                
+
             </div>
         </div>
     </div>
@@ -28,11 +28,8 @@ export default {
     name:'Main',
     data() {
         return {
-            
+
         }
     },
 }
 </script>
-<style lang="scss">
-    @import "../assets/scss/main";
-</style>

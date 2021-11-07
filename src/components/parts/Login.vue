@@ -7,6 +7,18 @@
             <div class="ks-form">
                 <input type="text" placeholder="Username" class="ks-form__input">
                 <input type="text" placeholder="Password" class="ks-form__input">
+                <span class="ks-form__text">Select Your Gender</span>
+                <div class="ks-form__gender">
+                    <span
+                    v-bind:class="{'ks-form__gender-active': clicked}"
+                    v-on:click ="showmale"
+                    class="ks-form__gender-list"
+                    >M</span>
+                    <span
+                    v-bind:class="{'ks-form__gender-active':clicked2}"
+                    v-on:click ="showfemale"
+                    class="ks-form__gender-list">F</span>
+                </div>
                 <button class="ks-form__btn">Login</button>
             </div>
         </div>
@@ -19,15 +31,26 @@ export default {
     name: 'Login',
     data() {
         return {
-            
+            clicked:false,
+            clicked2:false
         }
     },
+    methods:{
+        showmale(){
+            this.clicked=true,
+            this.clicked2=false
+        },
+        showfemale(){
+            this.clicked2=true,
+            this.clicked=false
+        }
+    }
 }
 </script>
 <style lang="scss">
     @import "../../assets/scss/main";
     @import "../../assets/scss/form";
-    input::-webkit-input-placeholder { 
-        color: #000; 
+    input::-webkit-input-placeholder {
+        color: #000;
     }
 </style>
