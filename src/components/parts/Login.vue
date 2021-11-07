@@ -10,13 +10,13 @@
                 <span class="ks-form__text">Select Your Gender</span>
                 <div class="ks-form__gender">
                     <span
-                    v-bind:class="{'ks-form__gender-active': clicked}"
-                    v-on:click ="showmale"
+                    :class="{'ks-form__gender-active': clicked}"
+                    @click ="showmale"
                     class="ks-form__gender-list"
                     >M</span>
                     <span
-                    v-bind:class="{'ks-form__gender-active':clicked2}"
-                    v-on:click ="showfemale"
+                    :class="{'ks-form__gender-active':clicked2}"
+                    @click ="showfemale"
                     class="ks-form__gender-list">F</span>
                 </div>
                 <button class="ks-form__btn">Login</button>
@@ -26,13 +26,14 @@
 </template>
 
 <script>
-
+import ScoreApi from '@/scripts/scoreApi'
 export default {
     name: 'Login',
     data() {
         return {
             clicked:false,
-            clicked2:false
+            clicked2:false,
+            scoreApi: new ScoreApi()
         }
     },
     methods:{
@@ -43,6 +44,9 @@ export default {
         showfemale(){
             this.clicked2=true,
             this.clicked=false
+        },
+        getInfoBoard(){
+            this.scoreApi.getBoard();
         }
     }
 }

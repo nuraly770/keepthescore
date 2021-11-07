@@ -24,9 +24,9 @@ export default {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-stify-content: center;
-tify-content: center;
-tify-content: center;
+// stify-content: center;
+// tify-content: center;
+// tify-content: center;
 }
 </style>
 

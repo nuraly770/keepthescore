@@ -3,9 +3,9 @@
     <div class="ks-main">
         <div class="ks-main__wrapper">
             <statistics />
-            <login v-if="false"/>
-            <leaders-counter v-if="true"/>
-            <leaders />
+            <login v-if="true"/>
+            <leaders-counter v-if="false"/>
+            <leaders v-if="false" />
             <div class="ks-main__players">
 
             </div>
