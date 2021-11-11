@@ -11,12 +11,12 @@
             </div>
             <h3 class="ks-profile__title">Add score</h3>
             <div class="ks-form">
-                <input type="number" placeholder="0" class="ks-form__input">
+                <input type="number" placeholder="0" v-model="result" class="ks-form__input">
                 <button class="ks-form__btn">Add score</button>
             </div>
             <button
             v-on:click="number"
-            class="ks-profile__circle-btn">{{ result }}</button>
+            class="ks-profile__circle-btn">+1</button>
         </div>
     </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     name: 'Profile',
     data() {
         return {
-          result: 1
+          result: 0,
         }
     },
     props: ['value'],
@@ -37,11 +37,20 @@ export default {
         this.result += 1
         this.emitResult()
       }
+    },
+    mounted() {
+      if (localStorage.result) {
+        this.result = localStorage.result;
+      }
+    },
+    watch: {
+        result(newResult) {
+            localStorage.result = newResult;
+      }
     }
 }
 </script>
 <style lang="scss">
-    // @import "../../assets/scss/form";
     .ks-profile {
             width: 237px;
             margin: auto;
@@ -115,6 +124,7 @@ export default {
             // .ks-profile__circle-btn
 
             &__circle-btn {
+                cursor: pointer;
                 border: none;
                 border-radius: 100%;
                 width: 108px;

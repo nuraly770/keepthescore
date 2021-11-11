@@ -5,7 +5,7 @@
             <div class="ks-leaders__inner-wrapper">
                 <div class="ks-leaders__place">1</div>
                 <div class="ks-leaders__name">Gurban</div>
-                <div class="ks-leaders__number">2312</div>
+                <div class="ks-leaders__number">2222</div>
             </div>
             <div class="ks-leaders__image">
                 <img src="../assets/man.svg" alt="man">
@@ -15,46 +15,27 @@
             <div class="ks-leaders__color"></div>
         </div>
     </div>
-    <div class="ks-leaders__outer-wrapper">
-        <div class="ks-leaders__wrapper">
-            <div class="ks-leaders__inner-wrapper">
-                <div class="ks-leaders__place">2</div>
-                <div class="ks-leaders__name">Annaoraz</div>
-                <div class="ks-leaders__number">1901</div>
-            </div>
-            <div class="ks-leaders__image">
-                <img src="../assets/man_second.svg" alt="man">
-            </div>
-        </div>
-        <div class="ks-leaders__line">
-            <div class="ks-leaders__color"></div>
-        </div>
-    </div>
-    <div class="ks-leaders__outer-wrapper">
-        <div class="ks-leaders__wrapper">
-            <div class="ks-leaders__inner-wrapper">
-                <div class="ks-leaders__place">3</div>
-                <div class="ks-leaders__name">Welmyrat</div>
-                <div class="ks-leaders__number">1834</div>
-            </div>
-            <div class="ks-leaders__image">
-                <img src="../assets/man_third.svg" alt="man">
-            </div>
-        </div>
-        <div class="ks-leaders__line">
-            <div class="ks-leaders__color"></div>
-        </div>
-    </div>
 </div>
 </template>
 <script>
+import scoreApi from '@/scripts/scoreApi'
+
 export default {
     name: 'Leaders',
     data() {
         return {
-
+            scoreApi: new scoreApi(),
         }
     },
+    mounted(){
+        this.scoreApi.getBoard().then(res =>{
+             for(let i = 0; i < res.players.length; i++){
+                console.log(res.players[i].score)
+                console.log(res.players[i].player_name)
+                console.log(res.players[i].id)
+            }
+        })
+    }
 }
 </script>
 <style lang="scss">
