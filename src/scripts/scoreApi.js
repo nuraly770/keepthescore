@@ -14,7 +14,6 @@ export default class ScoreApi{
             }
         }).then(
             response => {
-                console.log(response.data)
                 return response.data
             }
         )

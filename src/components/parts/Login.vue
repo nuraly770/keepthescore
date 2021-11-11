@@ -5,8 +5,18 @@
                 Login
             </h3>
             <div class="ks-form">
-                <input type="text" placeholder="Username" class="ks-form__input">
-                <input type="text" placeholder="Password" class="ks-form__input">
+                <input
+                    type="text"
+                    placeholder="USERNAME"
+                    class="ks-form__input"
+                    v-model="username"
+                >
+                <input
+                    type="text"
+                    placeholder="PASSWORD"
+                    class="ks-form__input"
+                    v-model="password"
+                >
                 <span class="ks-form__text">Select Your Gender</span>
                 <div class="ks-form__gender">
                     <span
@@ -19,7 +29,11 @@
                     @click ="showfemale"
                     class="ks-form__gender-list">F</span>
                 </div>
-                <button class="ks-form__btn">Login</button>
+                <button
+                    class="ks-form__btn"
+                    @click="login">
+                    Login
+                </button>
             </div>
         </div>
     </div>
@@ -33,6 +47,8 @@ export default {
         return {
             clicked:false,
             clicked2:false,
+            username: '',
+            password: '',
             scoreApi: new ScoreApi()
         }
     },
@@ -47,6 +63,19 @@ export default {
         },
         getInfoBoard(){
             this.scoreApi.getBoard();
+        },
+        login(){
+            // console.log(this.username, this.password)
+            this.scoreApi.getBoard()
+                .then(res => {
+                    console.log(res.players);
+                    console.log(this.username, this.password);
+                    for(let i = 0; i < res.players.length; i++){
+                        if(res.players[i].player_name == this.username || res.players[i].id == this.password){
+                            console.log(res.players[i])
+                        }
+                    }
+                })
         }
     }
 }
