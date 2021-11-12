@@ -31,6 +31,7 @@
                 </div>
                 <button
                     class="ks-form__btn"
+                    :disabled="disabled"
                     @click="login">
                     Login
                 </button>
@@ -52,6 +53,15 @@ export default {
             scoreApi: new ScoreApi()
         }
     },
+    computed:{
+        disabled(){
+            if(this.username == '' || this.password == ''){
+                return true
+            } else {
+                return false 
+            }
+        }
+    },
     methods:{
         showmale(){
             this.clicked=true,
@@ -68,11 +78,12 @@ export default {
             // console.log(this.username, this.password)
             this.scoreApi.getBoard()
                 .then(res => {
-                    console.log(res.players);
-                    console.log(this.username, this.password);
+                    // 3748470
                     for(let i = 0; i < res.players.length; i++){
-                        if(res.players[i].player_name == this.username || res.players[i].id == this.password){
-                            console.log(res.players[i])
+                        if(res.players[i].player_name == this.username && res.players[i].id == this.password){
+                            this.$store.commit('stateUpdater', { name: 'session', value: true })
+                        } else {
+                            console.log('kodyn ya parolyn yalnysh bratishka')
                         }
                     }
                 })

@@ -48,22 +48,22 @@ export default {
             first.style.height = '0'
         }
         if(this.number < 5000){
-            console.log(second.style.height = 100 - (this.number / 5000 *100)+ '%')
+            // console.log(second.style.height = 100 - (this.number / 5000 *100)+ '%')
         } else if( this.number >= 5000){
             second.style.height = '0'
         }
         if(this.number < 10000){
-            console.log(third.style.height = 100 - (this.number / 10000 *100)+ '%')
+            // console.log(third.style.height = 100 - (this.number / 10000 *100)+ '%')
         } else if( this.number >= 10000){
             third.style.height = '0'
         }
         if(this.number < 20000){
-            console.log(fourth.style.height = 100 - (this.number / 20000 *100)+ '%')
+            // console.log(fourth.style.height = 100 - (this.number / 20000 *100)+ '%')
         } else if( this.number >= 20000){
             fourth.style.height = '0'
         }
         if(this.number < 30000){
-            console.log(fiveth.style.height = 100 - (this.number / 30000 *100)+ '%')
+            // console.log(fiveth.style.height = 100 - (this.number / 30000 *100)+ '%')
         } else if( this.number >= 30000){
             fiveth.style.height = '0'
         }

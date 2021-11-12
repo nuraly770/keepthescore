@@ -1,91 +1,44 @@
 <template>
 <div class="ks-leaders">
-    <div class="ks-leaders__outer-wrapper">
-        <div class="ks-leaders__wrapper">
-            <div class="ks-leaders__inner-wrapper">
-                <div class="ks-leaders__place">1</div>
-                <div class="ks-leaders__name">Gurban</div>
-                <div class="ks-leaders__number">2222</div>
-            </div>
-            <div class="ks-leaders__image">
-                <img src="../assets/man.svg" alt="man">
-            </div>
-        </div>
-        <div class="ks-leaders__line">
-            <div class="ks-leaders__color"></div>
-        </div>
-    </div>
+    <Player
+        v-for="(player, index) in playersList"
+        :key="player.id"
+        :place="index+1"
+        :title="player.player_name"
+        :score="player.score"
+    />
 </div>
 </template>
 <script>
 import scoreApi from '@/scripts/scoreApi'
-
+import Player from '@/views/Player.vue'
 export default {
+    components: {
+        Player
+    },
     name: 'Leaders',
     data() {
         return {
             scoreApi: new scoreApi(),
         }
     },
+    computed:{
+        playersList () {
+            return this.$store.state.playersList
+        }
+    },
     mounted(){
-        this.scoreApi.getBoard().then(res =>{
-             for(let i = 0; i < res.players.length; i++){
-                console.log(res.players[i].score)
-                console.log(res.players[i].player_name)
-                console.log(res.players[i].id)
-            }
-        })
+        this.$store.dispatch('getBoard')
+        // this.scoreApi.getBoard().then(res =>{
+            //  for(let i = 0; i < res.players.length; i++){
+                // console.log(res.players[i].score)
+                // console.log(res.players[i].player_name)
+                // console.log(res.players[i].id)
+            // }
+        // })
     }
 }
 </script>
 <style lang="scss">
-.ks-leaders{
-    &__wrapper{
-        display: flex;
-        justify-content: flex-start;
-    }
-    &__line{
-        width: 100%;
-        height: 5px;
-        background: #DAEED3;
-        border-radius: 10px;
-    }
-    &__color{
-        background: #5A8648;
-        border-radius: 10px;
-        width: 25%;
-        height: 5px;
-    }
-    &__inner-wrapper{
-        text-align: right;
-        color: #000000;
-        margin-right: 7px;
-    }
-    &__outer-wrapper{
-        margin-bottom: 20px;
-    }
-    &__place{
-        margin: 0 0 5px 17px;
-        font-size: 16px;
-        font-weight: 600;
-        height: 28px;
-        width: 28px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #FCF191;
-        border-radius: 50%;
-    }
-    &__name{
-        line-height: 15px;
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    &__number{
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-}
+
 </style>

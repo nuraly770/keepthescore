@@ -3,11 +3,10 @@
     <div class="ks-main">
         <div class="ks-main__wrapper">
             <statistics />
-            <login v-if="false"/>
-            <leaders-counter v-if="true"/>
-            <leaders v-if="false" />
+            <login v-if="logIn==false"/>
+            <leaders-counter v-if="logIn==true"/>
+            <!-- <leaders v-if="true" /> -->
             <div class="ks-main__players">
-
             </div>
         </div>
     </div>
@@ -31,5 +30,10 @@ export default {
 
         }
     },
+    computed: {
+        logIn(){
+            return this.$store.state.session
+        }
+    }
 }
 </script>
