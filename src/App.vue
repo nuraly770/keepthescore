@@ -24,6 +24,7 @@ export default {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+  position: relative;
 // stify-content: center;
 // tify-content: center;
 // tify-content: center;

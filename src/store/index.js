@@ -4,7 +4,8 @@ import ScoreApi from '@/scripts/scoreApi'
 export default createStore({
   state: {
     session: false,
-    playersList: {}
+    playersList: {},
+    firstPlaceScore: 0
   },
   mutations: {
     stateUpdater (state, payload) {
