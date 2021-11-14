@@ -50,7 +50,8 @@ export default {
             clicked2:false,
             username: '',
             password: '',
-            scoreApi: new ScoreApi()
+            scoreApi: new ScoreApi(),
+            score:''
         }
     },
     computed:{
@@ -58,7 +59,7 @@ export default {
             if(this.username == '' || this.password == ''){
                 return true
             } else {
-                return false 
+                return false
             }
         }
     },
@@ -82,6 +83,9 @@ export default {
                     for(let i = 0; i < res.players.length; i++){
                         if(res.players[i].player_name == this.username && res.players[i].id == this.password){
                             this.$store.commit('stateUpdater', { name: 'session', value: true })
+                            this.$store.commit('stateUpdater', { name: 'player', value: res.players[i]})
+                            console.log(i+1)
+                            this.$store.commit('stateUpdater', { name: 'place', value: i+1 })
                         } else {
                             console.log('kodyn ya parolyn yalnysh bratishka')
                         }

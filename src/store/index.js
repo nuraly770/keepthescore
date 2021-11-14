@@ -4,7 +4,9 @@ import ScoreApi from '@/scripts/scoreApi'
 export default createStore({
   state: {
     session: false,
-    playersList: {}
+    playersList: {},
+    player: {},
+    place: {}
   },
   mutations: {
     stateUpdater (state, payload) {
@@ -90,7 +92,7 @@ export default createStore({
     // }),
     createPersistedState({
       storage: window.localStorage,
-      paths: ['session']
+      paths: ['session', 'player', 'place']
     })
   ]
 })

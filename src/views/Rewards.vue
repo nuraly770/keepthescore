@@ -1,5 +1,4 @@
 <template>
-        <span>{{ number }}</span>
     <div class="ks-rewards__images">
         <div class="ks-rewards__image" >
             <div class="ks-rewards__first" id="first"></div>
@@ -32,7 +31,7 @@ export default {
     name: 'Leaders',
     data() {
         return {
-            number: '60000'
+          counter: JSON.parse(localStorage.getItem('vuex'))
         }
     },
     mounted(){
@@ -42,34 +41,34 @@ export default {
         const fourth = document.getElementById('fourth')
         const fiveth = document.getElementById('fiveth')
         const sixth = document.getElementById('sixth')
-        if(this.number < 1000){
-            first.style.height = 100 - (this.number / 1000*100)+ '%'
-        } else if( this.number >= 1000){
+        if(this.counter.player.score < 1000){
+            first.style.height = 100 - (this.counter.player.score / 1000*100)+ '%'
+        } else if( this.counter.player.score >= 1000){
             first.style.height = '0'
         }
-        if(this.number < 5000){
-            // console.log(second.style.height = 100 - (this.number / 5000 *100)+ '%')
-        } else if( this.number >= 5000){
+        if(this.counter.player.score < 5000){
+            // console.log(second.style.height = 100 - (this.counter.player.score / 5000 *100)+ '%')
+        } else if( this.counter.player.score >= 5000){
             second.style.height = '0'
         }
-        if(this.number < 10000){
-            // console.log(third.style.height = 100 - (this.number / 10000 *100)+ '%')
-        } else if( this.number >= 10000){
+        if(this.counter.player.score < 10000){
+            // console.log(third.style.height = 100 - (this.counter.player.score / 10000 *100)+ '%')
+        } else if( this.counter.player.score >= 10000){
             third.style.height = '0'
         }
-        if(this.number < 20000){
-            // console.log(fourth.style.height = 100 - (this.number / 20000 *100)+ '%')
-        } else if( this.number >= 20000){
+        if(this.counter.player.score < 20000){
+            // console.log(fourth.style.height = 100 - (this.counter.player.score / 20000 *100)+ '%')
+        } else if( this.counter.player.score >= 20000){
             fourth.style.height = '0'
         }
-        if(this.number < 30000){
-            // console.log(fiveth.style.height = 100 - (this.number / 30000 *100)+ '%')
-        } else if( this.number >= 30000){
+        if(this.counter.player.score < 30000){
+            // console.log(fiveth.style.height = 100 - (this.counter.player.score / 30000 *100)+ '%')
+        } else if( this.counter.player.score >= 30000){
             fiveth.style.height = '0'
         }
-        if(this.number < 50000){
-            sixth.style.height = 100 - (this.number / 50000 *100)+ '%'
-        } else if( this.number >= 50000){
+        if(this.counter.player.score < 50000){
+            sixth.style.height = 100 - (this.counter.player.score / 50000 *100)+ '%'
+        } else if( this.counter.player.score >= 50000){
             sixth.style.height = '0'
         }
     }

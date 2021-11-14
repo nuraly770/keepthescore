@@ -18,4 +18,17 @@ export default class ScoreApi{
             }
         )
     }
+    getScore(){
+        return axios({
+            method: 'POST',
+            url: this.url + 'ihmyvnahygr/score/',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(
+            response => {
+                return response.data
+            }
+        )
+    }
 }

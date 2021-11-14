@@ -4,15 +4,17 @@
             <div class="ks-profile__wrapper">
                 <img src="../assets/profilePhoto.svg" alt="profilePhoto" class="ks-profile__image">
                 <div class="ks-profile__data">
-                    <h4 class="ks-profile__data-title">Gurban</h4>
-                    <p class="ks-profile__data-text">Total score: 2134</p>
-                    <p class="ks-profile__data-text">Position: 2</p>
+                    <h4 class="ks-profile__data-title">{{ counter.player.player_name }}</h4>
+                    <p class="ks-profile__data-text">Total score:{{ counter.player.score }} </p>
+                    <p class="ks-profile__data-text">Position: {{ counter.place }}</p>
                 </div>
             </div>
             <h3 class="ks-profile__title">Add score</h3>
             <div class="ks-form">
                 <input type="number" placeholder="0" v-model="result" class="ks-form__input">
-                <button class="ks-form__btn">Add score</button>
+                <button
+                v-on:click="addScore"
+                class="ks-form__btn">Add score</button>
             </div>
             <button
             v-on:click="number"
@@ -21,15 +23,22 @@
     </div>
 </template>
 <script>
+import scoreApi from '@/scripts/scoreApi'
+
 export default {
     name: 'Profile',
     data() {
         return {
+          scoreApi: new scoreApi(),
           result: 0,
+          counter: JSON.parse(localStorage.getItem('vuex')),
         }
     },
     props: ['value'],
     methods:{
+      addScore(){
+        console.log(this.counter.player.score + this.result)
+      },
       emitResult(){
         this.$emit('input', this.result)
       },
