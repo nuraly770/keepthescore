@@ -1,13 +1,14 @@
 <template>
-<div class="ks-leaders">
-    <Player
-        v-for="(player, index) in playersList"
-        :key="player.id"
-        :place="index+1"
-        :title="player.player_name"
-        :score="player.score"
-    />
-</div>
+    <div class="ks-leaders">
+        <Player
+            v-for="(player, index) in playersList"
+            :key="player.id"
+            :place="index+1"
+            :name="player.player_name"
+            :score="player.score"
+            :image="icon[index]"
+        />
+    </div>
 </template>
 <script>
 import scoreApi from '@/scripts/scoreApi'
@@ -20,6 +21,7 @@ export default {
     data() {
         return {
             scoreApi: new scoreApi(),
+            icon: [require('../assets/boy6.svg'), require('../assets/boy2.svg'), require('../assets/boy3.svg'), require('../assets/boy4.svg'), require('../assets/boy5.svg'), require('../assets/boy1.svg'), require('../assets/boy2.svg'), require('../assets/boy3.svg'), require('../assets/boy4.svg'), require('../assets/boy5.svg'), require('../assets/boy6.svg')]
         }
     },
     computed:{
@@ -40,5 +42,12 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.ks-leaders{
+    height: 51vh;
+    overflow-y: auto;
+     &::-webkit-scrollbar {
+        width: 0px;
+        display: none;
+    }
+}
 </style>

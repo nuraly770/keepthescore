@@ -6,7 +6,8 @@ export default createStore({
     session: false,
     playersList: {},
     player: {},
-    place: {}
+    place: {},
+    firstPlaceScore: 0
   },
   mutations: {
     stateUpdater (state, payload) {

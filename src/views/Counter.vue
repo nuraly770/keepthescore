@@ -37,7 +37,10 @@ export default {
     props: ['value'],
     methods:{
       addScore(){
-        console.log(this.counter.player.score + this.result)
+           this.scoreApi.getScore()
+                .then(res => {
+                    console.log(res)
+                })
       },
       emitResult(){
         this.$emit('input', this.result)
