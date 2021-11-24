@@ -23,14 +23,14 @@
     </div>
 </template>
 <script>
-import scoreApi from '@/scripts/scoreApi'
+// import scoreApi from '@/scripts/scoreApi'
 
 export default {
     name: 'Players',
     props:["place", "title", "score"],
     data() {
         return {
-            scoreApi: new scoreApi(),
+            // scoreApi: new scoreApi(),
         }
     },
     computed: {
@@ -48,13 +48,13 @@ export default {
       }
     },
     mounted(){
-        this.scoreApi.getBoard().then(res =>{
-             for(let i = 0; i < res.players.length; i++){
+        // this.scoreApi.getBoard().then(res =>{
+        //      for(let i = 0; i < res.players.length; i++){
                 // console.log(res.players[i].score)
                 // console.log(res.players[i].player_name)
                 // console.log(res.players[i].id)
-            }
-        })
+            // }
+        // })
     }
 }
 </script>

@@ -12,7 +12,8 @@ body {
   height: 100%;
   /* overflow: hidden; */
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Cairo', sans-serif;
+  min-width: 320px;
 }
 h1, h2, h3, h4, h5, h6, p, span {
   margin-bottom: 8px;
@@ -20,4 +21,7 @@ h1, h2, h3, h4, h5, h6, p, span {
   color: #000;
   word-break: break-word;
   white-space: normal;
+}
+button {
+  font-family: 'Cairo', sans-serif;
 }

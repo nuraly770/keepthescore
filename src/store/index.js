@@ -3,85 +3,64 @@ import createPersistedState from 'vuex-persistedstate'
 import ScoreApi from '@/scripts/scoreApi'
 export default createStore({
   state: {
+    userName: null,
     session: false,
+    apiRes: {},
     playersList: {},
     player: {},
     place: {},
-    firstPlaceScore: 0
+    firstPlaceScore: 0,
+    publicKey: '',
+    privateKey: '',
+    loaded: false,
+    gender: 'male',
+    counterNumber: 0,
+    selectedTab: null
   },
   mutations: {
     stateUpdater (state, payload) {
       state[payload.name] = payload.value
     },
-    // enableProgressBar (state) {
-    //   state.progressBar = true
-    // },
-    // disableProgressBar (state) {
-    //   state.progressBar = false
-    //   state.upDownloadPercentage = 0
-    // },
-    // enableNotifications (state, message) {
-    //   state.notifications = message
-    // },
-    // disableNotifications (state) {
-    //   state.notifications = ''
-    // },
-    // pushFileProcessing (state, payload) {
-    //   state.fileProcessing.push(payload)
-    // },
-    // logOut (state) {
-    //   state.user.loggedIn = false
-    // },
-    // logIn (state) {
-    //   state.user.loggedIn = true
-    // }
   },
-  getters: {
-    getFileListValue: (state) => {
-      return state.fileList
-    }
-  },
+  getters: {},
   actions: {
-    getBoard ({ commit }) {
-      const scoreApi = new ScoreApi()
+    getBoard ({ commit, state, dispatch }) {
+      const scoreApi = new ScoreApi(state.publicKey, state.privateKey)
       scoreApi.getBoard().then(res =>{
         commit('stateUpdater', { name: 'playersList', value: res.players })
+        commit('stateUpdater', { name: 'apiRes', value: res })
+        commit('stateUpdater', { name: 'loaded', value: true })
+        dispatch('getPlayerData')
       })
+    },
+    addScore ({ commit, state, dispatch }) {
+      (async () => {
+        const scoreApi = new ScoreApi(state.publicKey, state.privateKey)
+        await scoreApi.addScore(state.player.id, state.counterNumber)
+        scoreApi.getBoard().then(res => {
+          commit('stateUpdater', { name: 'playersList', value: res.players })
+          commit('stateUpdater', { name: 'apiRes', value: res })
+          commit('stateUpdater', { name: 'loaded', value: true })
+          commit('stateUpdater', { name: 'counterNumber', value: 0 })
+          dispatch('getPlayerData')
+        })
+      })()
+    },
+    getPublicKey ({ commit }) {
+      const url = document.location.href
+      const key = url.split('#?sav=')[1].split('|')[0]
+      commit('stateUpdater', { name: 'publicKey', value: key })
+    },
+    getPrivateKey ({ commit }) {
+      const url = document.location.href
+      const key = url.split('#?sav=')[1].split('|')[1]
+      commit('stateUpdater', { name: 'privateKey', value: key })
+    },
+    getPlayerData ({ commit, state }) {
+      const players = state.apiRes.players
+      const index = players.findIndex(c => c.player_name === state.userName)
+      commit('stateUpdater', { name: 'player', value: players[index]})
     }
-    // updateUpDownloadPercentageAction ({ commit }, percent) {
-    //   commit('stateUpdater', { name: 'upDownloadPercentage', value: percent })
-    // },
-    // uploadFilesCountAction ({ commit }, count) {
-    //   commit('stateUpdater', { name: 'uploadFilesCount', value: count })
-    // },
-    // filterList ({ commit }, filterValue) {
-    //   const deNetStorage = new DeNetStorage(this.state.apiUrl)
-    //   deNetStorage.infoDir(this.state.selectedDirKey).then(result => {
-    //     result = result.filter(item => item.name.toLowerCase().indexOf(filterValue) > -1)
-    //     commit('stateUpdater', { name: 'fileList', value: result })
-    //   })
-    // },
-    // sortList ({ commit }, prop) {
-    //   const deNetStorage = new DeNetStorage(this.state.apiUrl)
-    //   deNetStorage.infoDir(this.state.selectedDirKey).then(result => {
-    //     if (prop === 'type') {
-    //       for (const x of result) {
-    //         if (x.isFolder === false) {
-    //           const file = x.name.split('/').pop()
-    //           const fileArray = [file.substr(0, file.lastIndexOf('.')), file.substr(file.lastIndexOf('.') + 1, file.length)]
-    //           x.type = fileArray[1]
-    //         } else {
-    //           x.type = ''
-    //         }
-    //       }
-    //       result = result.sort((a, b) => (a.type > b.type) ? 1 : -1)
-    //       commit('stateUpdater', { name: 'fileList', value: result })
-    //     } else {
-    //       result = result.sort((a, b) => (a[prop] > b[prop]) ? 1 : -1)
-    //       commit('stateUpdater', { name: 'fileList', value: result })
-    //     }
-    //   })
-    // }
   },
   modules: {
   },
@@ -93,7 +72,7 @@ export default createStore({
     // }),
     createPersistedState({
       storage: window.localStorage,
-      paths: ['session', 'player', 'place']
+      paths: ['userName', 'session', 'player', 'place', 'gender', 'counterNumber', 'selectedTab']
     })
   ]
 })
