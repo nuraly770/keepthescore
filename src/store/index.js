@@ -48,13 +48,21 @@ export default createStore({
     },
     getPublicKey ({ commit }) {
       const url = document.location.href
-      const key = url.split('#?sav=')[1].split('|')[0]
-      commit('stateUpdater', { name: 'publicKey', value: key })
+      const key = url.split('#?sav=')[1]
+      let pbKey = key.split('|')[0]
+      if (pbKey.includes('%7C')) {
+        pbKey = key.split('%7C')[0]
+      }
+      commit('stateUpdater', { name: 'publicKey', value: pbKey })
     },
     getPrivateKey ({ commit }) {
       const url = document.location.href
-      const key = url.split('#?sav=')[1].split('|')[1]
-      commit('stateUpdater', { name: 'privateKey', value: key })
+      const key = url.split('#?sav=')[1]
+      let pKey = key.split('|')[1]
+      if (!pKey && key.includes('%7C')) {
+        pKey = key.split('%7C')[1]
+      }
+      commit('stateUpdater', { name: 'privateKey', value: pKey })
     },
     getPlayerData ({ commit, state }) {
       const players = state.apiRes.players
